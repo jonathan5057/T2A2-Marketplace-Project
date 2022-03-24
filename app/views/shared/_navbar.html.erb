@@ -19,7 +19,7 @@
             <%= link_to "Sign up", new_user_registration_path, class: "nav-link active" %>
             </li>
         <% else %>
-            <% if current_user.vendor %>
+            <% if current_user.vendor? %>
                 <li class="nav-item">
                 <%= link_to 'New Listing', new_listing_path, class: "nav-link active" %>
                 </li>

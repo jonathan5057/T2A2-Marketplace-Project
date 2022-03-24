@@ -1,5 +1,8 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: %i[ show edit update destroy ]
+  before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
+  before_action :is_vendor, only: [:new, :create]
+  before_action :check_ownership, only: [ :edit, :update, :destroy]
 
   # GET /listings or /listings.json
   def index
@@ -65,6 +68,19 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:category, :title, :quantity, :price, :user_id)
+      params.require(:listing).permit(:category, :title, :quantity, :price) 
+    end
+
+    # Check and Only allow vendor to create new listings. 
+    def is_vendor
+      if !current_user.vendor?
+        redirect_to listings_url, alert: "You must be a vendor to add new listing."
+      end
+    end
+
+    def check_ownership
+      if !current_user.admin? and current_user.id!= @listing.user_id
+        redirect_to listings_url, alert: "You must be an admin of the listing."
+      end
     end
 end
