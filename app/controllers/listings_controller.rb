@@ -24,7 +24,8 @@ class ListingsController < ApplicationController
 
   # POST /listings or /listings.json
   def create
-    @listing = Listing.new(listing_params)
+    @listing = Listing.create(category: listing_params[:category], title: listing_params[:title], quantity: listing_params[:quantity], price: listing_params[:price], user: current_user)
+    
 
     respond_to do |format|
       if @listing.save
