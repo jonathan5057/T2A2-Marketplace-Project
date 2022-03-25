@@ -1,0 +1,28 @@
+<h1>My Purchase</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Distribution Center</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.listing.category %></td>
+        <td><%= order.listing.title %></td>
+        <td><%= order.listing.warehouse.full_address %></td>
+        <td><%= order.quantity %></td>
+        <td><%= order.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

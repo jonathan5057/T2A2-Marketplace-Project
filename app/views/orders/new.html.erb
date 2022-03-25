@@ -1,0 +1,15 @@
+<p><%= "Purchase #{@listing.title}"%></p>
+
+<%="$#{@listing.price}" %>
+
+<%= form_with model: [@listing, @order] do |form| %>
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, min: 1, max: @listing.quantity %>
+    <%="#{@listing.quantity} inventory available"%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
