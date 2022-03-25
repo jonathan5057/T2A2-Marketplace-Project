@@ -30,8 +30,6 @@
   <%= @listing.warehouse.full_address %>
 </p>
 
-
-
 <% if user_signed_in? and (current_user.admin? or current_user.id==@listing.user_id) %>
   <%= link_to 'Edit', edit_listing_path(@listing) %> |
   <%= link_to 'Destroy', @listing, method: :delete, data: { confirm: 'Are you sure?' } %> |
