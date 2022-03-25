@@ -25,8 +25,8 @@ class ListingsController < ApplicationController
 
   # POST /listings or /listings.json
   def create
-    @listing = Listing.create(category: listing_params[:category], title: listing_params[:title], quantity: listing_params[:quantity], price: listing_params[:price], user: current_user)
-
+   # @listing = Listing.create(category: listing_params[:category], title: listing_params[:title], quantity: listing_params[:quantity], price: listing_params[:price], user: current_user)
+    @listing = Listing.create(listing_params)
     respond_to do |format|
       if @listing.save
         format.html { redirect_to listing_url(@listing), notice: "Listing was successfully created." }
