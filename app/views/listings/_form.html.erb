@@ -33,6 +33,16 @@
 
   <%= form.hidden_field :user_id, value: current_user.id %>
 
+  Warehouse Location: <br>
+  <%= form.fields_for :warehouse do |a_form| %>
+    <%= a_form.label :city %>
+    <%= a_form.text_field :city %>
+    <%= a_form.label :state %>
+    <%= a_form.text_field :state %>
+    <%= a_form.label :postcode %>
+    <%= a_form.text_field :postcode %> 
+  <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -16,6 +16,7 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing = Listing.new
+    @listing.warehouse = Warehouse.new
   end
 
   # GET /listings/1/edit
@@ -25,7 +26,6 @@ class ListingsController < ApplicationController
   # POST /listings or /listings.json
   def create
     @listing = Listing.create(category: listing_params[:category], title: listing_params[:title], quantity: listing_params[:quantity], price: listing_params[:price], user: current_user)
-    
 
     respond_to do |format|
       if @listing.save
@@ -69,7 +69,7 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:category, :title, :quantity, :price, :user_id) 
+      params.require(:listing).permit(:category, :title, :quantity, :price, :user_id, warehouse_attributes: [:city, :state, :postcode]) 
     end
 
     # Check and Only allow vendor to create new listings. 
