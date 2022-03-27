@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
     end
 
     def create
+        # calcualation operation for remaining inventory for particular product
         price = order_params[:quantity].to_i * @listing.price
         updated_quantity = @listing.quantity - order_params[:quantity].to_i
         @order = Order.create(user: current_user, listing: @listing, quantity: order_params[:quantity], price: price)
