@@ -212,11 +212,11 @@ The Order Model has many to one relationship with the User Model. Likewise, it a
 
 **R19	Provide your database schema design**
 
-![db](./docs/Schema_1.png)
+![db](./docs/Schema_1.PNG)
 
 <br>
 
-![db](./docs/Schema_2.png)
+![db](./docs/Schema_2.PNG)
 
 
 
