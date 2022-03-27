@@ -52,9 +52,10 @@ Below is the list of key features being implemented:
 
 **Screenshots**
 
-![signin]
-![listing]
-![description]
+![signin](./docs/login_page.PNG)
+![signup](./docs/signup_page.PNG)
+![listing](./docs/listing_page.PNG)
+![description](./docs/description_page.PNG)
 
 
 **Target audience:**
