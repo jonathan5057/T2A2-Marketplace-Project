@@ -24,9 +24,7 @@ It has been shown that the printing industry has been dominated by only a few ma
 
 **Purpose**
 
-The purpose of this marketplace application aims to help consumers sourcing for printing supplies from multiple vendors which to increased the competitiveness in the market. 
-As the world is slowly moving towards working from home, consumers are increasingly spending more time working from home which led to increase in demand for printing supplies.
-Our app emerged as the perfect solution for both consumers and vendors to help them to increased the competitiveness and effectiveness in the market and achieved a win-win situation. 
+The purpose of this marketplace application aims to help consumers sourcing for printing supplies from multiple vendors which to increased the competitiveness in the market. As the world is slowly moving towards working from home, consumers are increasingly spending more time working from home which led to increase in demand for printing supplies. Our app emerged as the perfect solution for both consumers and vendors to help them to increased the competitiveness and effectiveness in the market and achieved a win-win situation. 
 
 
 **- Functionality / features**
@@ -49,7 +47,7 @@ Below is the list of key features being implemented:
 
 **Sitemap**
 
-![sitemap]
+![sitemap](./docs/SiteMap.png)
 
 
 **Screenshots**
@@ -101,7 +99,9 @@ Example:
 
 **R14	An ERD for your app**
 
-![erd]
+![erd](./docs/ERD.png)
+
+<br>
 
 
 **R15	Explain the different high-level components (abstractions) in your app**
@@ -161,23 +161,35 @@ Amazon Simple Storage Service (Amazon S3) is an object storage service that offe
 **R17	Describe your projects models in terms of the relationships (active record associations) they have with each other**
 
 **User Model**
-
 The user model is being created to serve both consumers and vendors and it would be determined through a checkbox (boolean data type) when they signed up for an account. This model helps to define the data for the user based on their username, email and their identity such as consumer or vendor.  
 
 Relationship/Association:
-
-![User_Model]
+1. has many: listings
+2. has many: orders
 
 
 **Listing Model**
+The listing model is the most essential model in the database where it serve as the main brain for the entire model. Listing can be added by vendor.
+
+Relationship/Association:
+1. belongs to: user
+2. has one: warehouse
+3. has many: orders
 
 
 **Order Model**
+This order model server as the connection between consumer to vendor and act as the transaction records when a consumer is ordering a product from vendor. 
+
+Relationship/Association:
+1. belongs to: user
+2. belongs to: listing
 
 
 **Warehouse Model**
+This model contains the addresses of warehouse that asscociated to the listing model where each new product listing is added by each vendors.
 
-
+Relationship/Association:
+1. belongs_to: listing
 
 
 **R18	Discuss the database relations to be implemented in your application**
@@ -189,13 +201,29 @@ Relationship/Association:
 3. orders
 4. warehouse
 
+Foreign keys has been used to connect model to model in creating the business logic of ther application.  
+
+The database relations begin from User model where it stores both consumer and vendor information with the boolean data type to determined if the user is consumer or vendor. User Model has one to many relationship to Listing model where consumer can order zero to many different products, or vendor can add many products for sale. 
+
+The Listing model has many to many relationship with the Warehouse Model where each product listings from any vendor can be store in many different warehouse location for easy access to Australia consumer from every city and state. 
+
+The Order Model has many to one relationship with the User Model. Likewise, it also has many to one relationship with the Listing Model. This means each product listing can have many orders from consumers. Moreover, everytime a consumer purchases product from a vendor, quantity availability of the particular product with be updated, this means that stock of the product is reduced once consumer make an order. 
+
+
 **R19	Provide your database schema design**
 
-screen
+![db](./docs/Schema_1.png)
+
+<br>
+
+![db](./docs/Schema_2.png)
+
 
 
 **R20	Describe the way tasks are allocated and tracked in your project**
 
 Trello app is used to track the progress and activities throughout the cycle of this project.
+
+The initial phrase of the project begin from planning stage to come out with required small piece of tasks. Then once the tasks are confirmed, it will then allocated into the "To Do List" followed by "Doing list" and then finally "Complete list", there is also a list of hard/stuck list. Each day I will start work on the project by picking tasks from the "TO DO LIST" and drag them into "Doing list" for that day. Once the task has been completed, I will then move them to "complete list" to tick off my task. I will then keep going back to the "TO DO List" to pick the tasks again until I completed the whole project. 
 
 [Link to my Trello Board](https://trello.com/b/AgYEYoKw/jonathantant2a2)
